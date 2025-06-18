@@ -80,8 +80,13 @@ public class Student {
         MongoDatabase database = mongoClient.getDatabase("Student");
         MongoCollection<Document>Enrollment = database.getCollection("Enrollment");
         MongoCollection<Document> Student = database.getCollection("Student");
-      Student.updateOne(Filters.eq("name","abhi"),Updates.set("name","Abhinav"));
-        Enrollment.updateMany(Filters.eq("name","abhi"),Updates.set("name","Abhinav"));
+      long count=Student.updateOne(Filters.eq("name","abhi"),Updates.set("name","Chidambaram")).getModifiedCount();
+      if (count >0){
+          System.out.println("Updated Succesfully");
+      }
+      else{
+          System.out.println("no match found");
+      }
     }
     }
 
