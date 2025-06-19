@@ -10,11 +10,31 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-          Student sc= new Student();
-//          sc.Enroll();
-//          sc.Show();
-//          sc.Update();
-          sc.find();
-            }
-            }
+Scanner sc=new Scanner(System.in);
+  Student s=new Student();
+        while(true)
+                {
+                System.out.println("Enter your choice");
+            System.out.println("1.Enroll");
+            System.out.println("2.Show");
+            System.out.println("3.Update ");
+            System.out.println("4.Find a Student details");
+int ch=sc.nextInt();
+            switch(ch) {
+        case 1:
+        s.Enroll();
+                    break;
+                            case 2:
+                         s.Show();
+                    break;
+                            case 3:
+                           s.Update();
+                    break;
+                            case 4:
+                            s.find();
+                    break;
+                            }
+                }
 
+    }
+       }
