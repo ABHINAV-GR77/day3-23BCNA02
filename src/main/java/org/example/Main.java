@@ -11,9 +11,10 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
           Student sc= new Student();
-          sc.Enroll();
-          sc.Show();
-          sc.Update();
+//          sc.Enroll();
+//          sc.Show();
+//          sc.Update();
+          sc.find();
             }
             }
 

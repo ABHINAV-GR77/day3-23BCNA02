@@ -5,6 +5,7 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.Indexes;
 import com.mongodb.client.model.Updates;
 import com.mongodb.client.result.UpdateResult;
 import org.bson.Document;
@@ -79,14 +80,32 @@ public class Student {
         MongoClient mongoClient = MongoClients.create(uri);
         MongoDatabase database = mongoClient.getDatabase("Student");
         MongoCollection<Document>Enrollment = database.getCollection("Enrollment");
+        Scanner sc=new Scanner(System.in);
+        System.out.println("enter name of student");
+        String title2 = sc.nextLine();
+        System.out.println("enter your new name of student");
+        String mtitle2 = sc.nextLine();
         MongoCollection<Document> Student = database.getCollection("Student");
-      long count=Student.updateOne(Filters.eq("name","abhi"),Updates.set("name","Chidambaram")).getModifiedCount();
+      long count=Student.updateOne(Filters.eq("name",title2),Updates.set("name",mtitle2)).getModifiedCount();
       if (count >0){
           System.out.println("Updated Succesfully");
       }
       else{
           System.out.println("no match found");
       }
+    }
+    public void find(){
+        String uri = "mongodb://localhost:27017/";
+        MongoClient mongoClient = MongoClients.create(uri);
+        MongoDatabase database = mongoClient.getDatabase("Student");
+        MongoCollection<Document>Enrollment = database.getCollection("Enrollment");
+        Scanner sc=new Scanner(System.in);
+      String Indexes=Enrollment.createIndex(com.mongodb.client.model.Indexes.ascending("Student.name"));
+      System.out.println("Using Indexes");
+      System.out.println("Enter the name of the student:");
+      String name=sc.nextLine();
+        Bson filter= Filters.eq("Student.name", name);
+        Enrollment.find(filter).forEach(doc -> System.out.println(doc.toJson()));
     }
     }
 
